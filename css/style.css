@@ -658,6 +658,14 @@ h1, h2, h3 {
     color: var(--accent);
     margin: 1rem 0;
     font-family: var(--font-alt);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.modal-price::before {
+    content: "₹";
+    font-size: 1.5rem;
 }
 
 .modal-order {
@@ -701,5 +709,98 @@ h1, h2, h3 {
     
     .modal-title {
         font-size: 1.5rem;
+    }
+}
+/* Cart Alert Styles */
+.cart-alert {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3000;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.cart-alert-content {
+    background: var(--dark);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.3);
+    position: relative;
+    max-width: 350px;
+}
+
+.cart-alert-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+}
+
+.cart-alert-close:hover {
+    color: var(--primary);
+}
+
+.cart-alert-message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cart-alert-message i {
+    color: var(--secondary);
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.cart-alert-message span {
+    line-height: 1.4;
+}
+
+.cart-alert-message strong {
+    color: var(--accent);
+}
+
+.cart-alert-view-btn {
+    background: var(--primary);
+    color: var(--light);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    width: 100%;
+    font-family: var(--font-alt);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cart-alert-view-btn:hover {
+    background: var(--secondary);
+    color: var(--dark);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
     }
 }

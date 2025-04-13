@@ -60,7 +60,44 @@ const products = [
         crunchFactor: 8
     }
 ];
-
+function showCartAlert(product) {
+    // Create alert element
+    const alert = document.createElement('div');
+    alert.className = 'cart-alert';
+    alert.innerHTML = `
+        <div class="cart-alert-content">
+            <span class="cart-alert-close">&times;</span>
+            <div class="cart-alert-message">
+                <i class="fas fa-check-circle"></i>
+                <span>Added <strong>${product.name}</strong> to your cart for <strong>₹${product.price}</strong>!</span>
+            </div>
+            <button class="cart-alert-view-btn">VIEW CART</button>
+        </div>
+    `;
+    
+    document.body.appendChild(alert);
+    
+    // Close button functionality
+    const closeBtn = alert.querySelector('.cart-alert-close');
+    closeBtn.addEventListener('click', () => {
+        alert.remove();
+    });
+    
+    // View cart button functionality
+    const viewBtn = alert.querySelector('.cart-alert-view-btn');
+    viewBtn.addEventListener('click', () => {
+        // In a real implementation, this would navigate to cart page
+        alert('This would take you to the cart page in a full implementation!');
+        alert.remove();
+    });
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (document.body.contains(alert)) {
+            alert.remove();
+        }
+    }, 5000);
+}
 // Create modal element
 function createModal() {
     const modal = document.createElement('div');
@@ -94,21 +131,21 @@ function createModal() {
 }
 
 // Load products into the grid
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const productsGrid = document.getElementById('products-grid');
     const modal = createModal();
-    
+
     // Load products from JSON (in a real app, this would be a fetch request)
     // For now we'll use the products array defined above
     loadProducts(products);
-    
+
     function loadProducts(productsData) {
         productsGrid.innerHTML = '';
-        
+
         productsData.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
-            
+
             productCard.innerHTML = `
                 <img src="${product.image}" alt="${product.name}" class="product-image">
                 <div class="product-overlay">
@@ -119,23 +156,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `;
-            
+
             productsGrid.appendChild(productCard);
-            
+
             // Add event listeners to buttons
             const detailsBtn = productCard.querySelector('.details-btn');
             const orderBtn = productCard.querySelector('.order-btn');
-            
+
             detailsBtn.addEventListener('click', () => {
                 showProductModal(product);
             });
-            
+
             orderBtn.addEventListener('click', () => {
                 addToCart(product);
             });
         });
     }
-    
+
     function showProductModal(product) {
         // Set modal content
         modal.querySelector('.modal-image').src = product.image;
@@ -145,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.querySelector('.modal-ingredients').textContent = product.ingredients;
         modal.querySelector('.modal-price span').textContent = product.price;
         modal.querySelector('#crunch-factor').textContent = product.crunchFactor;
-        
+
         // Set heat level indicators
         const heatLevels = modal.querySelector('#heat-levels');
         heatLevels.innerHTML = '';
@@ -160,31 +197,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             heatLevels.appendChild(heatDot);
         }
-        
+
         // Set order button event
         const orderBtn = modal.querySelector('.modal-order');
         orderBtn.addEventListener('click', () => {
             addToCart(product);
             closeModal();
         });
-        
+
         // Show modal
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
+
         // Close modal events
         const closeBtn = modal.querySelector('.modal-close');
         const overlay = modal.querySelector('.modal-overlay');
-        
+
         closeBtn.addEventListener('click', closeModal);
         overlay.addEventListener('click', closeModal);
-        
+
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
     }
-    
+
     function addToCart(product) {
         // In a real implementation, this would add the product to a shopping cart
         alert(`Added ${product.name} to your cart!`);
