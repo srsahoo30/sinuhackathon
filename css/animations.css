@@ -1,0 +1,83 @@
+/* Animations */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes glitch {
+    0% { background-position: 0 0; }
+    20% { background-position: -5px 5px; }
+    40% { background-position: 5px -5px; }
+    60% { background-position: -5px 5px; }
+    80% { background-position: 5px -5px; }
+    100% { background-position: 0 0; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: var(--glitch-color1);
+    animation: glitch-effect 3s infinite;
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch::after {
+    color: var(--glitch-color2);
+    animation: glitch-effect 2s infinite reverse;
+    z-index: -2;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch-effect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+/* Hover Animations */
+.neon-button, .social-icon, .flavor-card {
+    animation: pulse 2s infinite;
+}
+
+.neon-button:hover, .social-icon:hover, .flavor-card:hover {
+    animation: none;
+}
+
+/* Floating Animation */
+.flavor-card:nth-child(odd) {
+    animation: float 4s ease-in-out infinite;
+}
+
+.flavor-card:nth-child(even) {
+    animation: float 4s ease-in-out infinite 1s;
+}
