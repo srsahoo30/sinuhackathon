@@ -1,97 +1,64 @@
+// Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const hamburger = document.querySelector('.hamburger');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
+    mobileMenuBtn.addEventListener('click', function() {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
     });
     
-    // Load image grid from JSON
-    fetch('assets/data/products.json')
-        .then(response => response.json())
-        .then(data => {
-            const imageGrid = document.getElementById('imageGrid');
-            data.heroImages.forEach(image => {
-                const gridItem = document.createElement('div');
-                gridItem.className = 'grid-item';
-                
-                const img = document.createElement('img');
-                img.src = `assets/images/hero/${image.filename}`;
-                img.alt = image.alt;
-                
-                const overlay = document.createElement('div');
-                overlay.className = 'hover-overlay';
-                
-                const btn1 = document.createElement('button');
-                btn1.className = 'hover-button';
-                btn1.textContent = image.button1;
-                
-                const btn2 = document.createElement('button');
-                btn2.className = 'hover-button';
-                btn2.textContent = image.button2;
-                
-                overlay.appendChild(btn1);
-                overlay.appendChild(btn2);
-                gridItem.appendChild(img);
-                gridItem.appendChild(overlay);
-                imageGrid.appendChild(gridItem);
-            });
-            
-            // Load flavor cards
-            const flavorCards = document.getElementById('flavorCards');
-            data.flavors.forEach(flavor => {
-                const card = document.createElement('div');
-                card.className = 'flavor-card';
-                
-                const title = document.createElement('h3');
-                title.textContent = flavor.name;
-                
-                const desc = document.createElement('p');
-                desc.textContent = flavor.description;
-                
-                const heat = document.createElement('div');
-                heat.className = 'heat-level';
-                
-                for (let i = 0; i < 5; i++) {
-                    const dot = document.createElement('div');
-                    dot.className = 'heat-dot' + (i < flavor.heat ? ' active' : '');
-                    heat.appendChild(dot);
-                }
-                
-                const btn = document.createElement('button');
-                btn.className = 'neon-button small';
-                btn.textContent = 'CRUNCH IT';
-                
-                card.appendChild(title);
-                card.appendChild(desc);
-                card.appendChild(heat);
-                card.appendChild(btn);
-                flavorCards.appendChild(card);
-            });
-        })
-        .catch(error => console.error('Error loading data:', error));
+    // Adjust for window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            navLinks.style.display = 'flex';
+        } else {
+            navLinks.style.display = 'none';
+        }
+    });
     
-    // Form submission
-    const signupForm = document.querySelector('.signup-form');
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input').value;
-            // In a real app, you would send this to your server
-            alert(`CRUNCHMAX ACTIVATED! Check ${email} for your welcome package.`);
-            this.reset();
-        });
-    }
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('.main-nav');
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(10, 10, 10, 0.9)';
+            nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+        } else {
+            nav.style.background = 'rgba(10, 10, 10, 0.7)';
+            nav.style.boxShadow = 'none';
+        }
+    });
     
-    // Add random glitch effects occasionally
+    // Add random glitch effect to logo
+    const logo = document.getElementById('crunch-logo');
+    
     setInterval(() => {
         if (Math.random() > 0.7) {
-            document.body.classList.add('glitch-active');
+            logo.classList.add('glitch');
             setTimeout(() => {
-                document.body.classList.remove('glitch-active');
-            }, 200);
+                logo.classList.remove('glitch');
+            }, 500);
         }
     }, 5000);
+    
+    // Add hover effect to product cards
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const x = e.clientX - card.getBoundingClientRect().left;
+            const y = e.clientY - card.getBoundingClientRect().top;
+            
+            const centerX = card.offsetWidth / 2;
+            const centerY = card.offsetHeight / 2;
+            
+            const angleX = (y - centerY) / 20;
+            const angleY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+    });
 });

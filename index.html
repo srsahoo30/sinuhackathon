@@ -3,121 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUNCHMAX - Extreme Snacks for Gamers & Rebels</title>
+    <title>CRUNCHMAX | Extreme Flavor. Zero Chill.</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Press+Start+2P&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Glitch effect overlay -->
-    <div class="glitch-overlay"></div>
+    <!-- Noise overlay for gritty texture -->
+    <div class="noise-overlay"></div>
     
-    <!-- Header with neon border -->
-    <header class="neon-border">
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <img src="assets/images/logo.svg" alt="CRUNCHMAX">
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#" class="neon-text">FLAVORS</a></li>
-                    <li><a href="#" class="neon-text">MERCH</a></li>
-                    <li><a href="#" class="neon-text">EVENTS</a></li>
-                    <li><a href="#" class="neon-text">ABOUT</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </nav>
+    <!-- Glitch effect elements -->
+    <div class="glitch-layers">
+        <div class="glitch-layer"></div>
+        <div class="glitch-layer"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo" id="crunch-logo">
+                <span class="logo-text">CRUNCH<span class="logo-max">MAX</span></span>
+                <span class="logo-sub">EXTREME FLAVOR</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" data-text="FLAVORS">FLAVORS</a>
+                <a href="#" class="nav-link" data-text="MERCH">MERCH</a>
+                <a href="#" class="nav-link" data-text="EVENTS">EVENTS</a>
+                <a href="#" class="nav-link" data-text="ABOUT">ABOUT</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-    </header>
-
+    </nav>
+    
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1 class="glitch" data-text="CRUNCH OR DIE">CRUNCH OR DIE</h1>
-            <p class="tagline">EXTREME FLAVORS FOR THOSE WHO DARE</p>
-            
-            <div class="image-grid" id="imageGrid">
-                <!-- Images will be loaded via JS from JSON -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title glitch" data-text="CRUNCH OR DIE">CRUNCH OR DIE</h1>
+            <p class="hero-sub">The crunch that'll make your eardrums bleed and your tastebuds riot. Not for the weak.</p>
+            <button class="cta-btn pulse">TRY THE EXTREME</button>
+        </div>
+        <div class="scrolling-banner">
+            <div class="banner-content">
+                <span>WARNING: EXTREME CRUNCH • </span>
+                <span>VOLUME WARNING • </span>
+                <span>FLAVOR OVERLOAD • </span>
+                <span>NOT FOR BASIC SNACKERS • </span>
+                <span>WARNING: EXTREME CRUNCH • </span>
+                <span>VOLUME WARNING • </span>
+                <span>FLAVOR OVERLOAD • </span>
+                <span>NOT FOR BASIC SNACKERS • </span>
             </div>
         </div>
     </section>
-
-    <!-- Flavor Blast Section -->
-    <section class="flavor-blast">
-        <div class="container">
-            <h2>FLAVOR BLAST<span class="exclamation">!</span></h2>
-            <div class="flavor-cards" id="flavorCards">
-                <!-- Flavor cards will be loaded via JS -->
-            </div>
+    
+    <!-- Products Grid -->
+    <section class="products-section">
+        <h2 class="section-title">CHOOSE YOUR WEAPON</h2>
+        <div class="products-grid" id="products-grid">
+            <!-- Products will be loaded from JSON via JS -->
         </div>
     </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>JOIN THE CRUNCH REVOLUTION</h2>
-            <p>Get exclusive drops, merch, and tournament invites</p>
-            <form class="signup-form">
-                <input type="email" placeholder="YOUR@EMAIL.COM" required>
-                <button type="submit" class="neon-button">SIGN UP</button>
-            </form>
-        </div>
-    </section>
-
+    
     <!-- Footer -->
-    <footer class="neon-border-top">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/logo.svg" alt="CRUNCHMAX">
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-text">CRUNCH<span class="logo-max">MAX</span></span>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>FLAVORS</h3>
+                    <a href="#">Extreme Crunch</a>
+                    <a href="#">Limited Editions</a>
+                    <a href="#">Coming Soon</a>
                 </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h3>CRUNCH</h3>
-                        <ul>
-                            <li><a href="#">Flavors</a></li>
-                            <li><a href="#">Limited Editions</a></li>
-                            <li><a href="#">Store Locator</a></li>
-                        </ul>
-                    </div>
-                    <div class="link-group">
-                        <h3>COMMUNITY</h3>
-                        <ul>
-                            <li><a href="#">Esports</a></li>
-                            <li><a href="#">Tournaments</a></li>
-                            <li><a href="#">Streamers</a></li>
-                        </ul>
-                    </div>
-                    <div class="link-group">
-                        <h3>COMPANY</h3>
-                        <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
+                <div class="link-group">
+                    <h3>COMPANY</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Legal</a>
                 </div>
-                <div class="social-links">
-                    <a href="#" class="social-icon">T</a>
-                    <a href="#" class="social-icon">I</a>
-                    <a href="#" class="social-icon">Y</a>
-                    <a href="#" class="social-icon">D</a>
+                <div class="link-group">
+                    <h3>CONNECT</h3>
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Discord</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2023 CRUNCHMAX - ALL RIGHTS RESERVED</p>
-                <p>EAT. CRUNCH. REPEAT.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 CRUNCHMAX | WARNING: EXTREME FLAVOR AHEAD</p>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-tiktok"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-discord"></i>
             </div>
         </div>
     </footer>
-
-    <script src="js/utils.js"></script>
+    
+    <script src="js/products.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

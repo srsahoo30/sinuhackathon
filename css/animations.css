@@ -1,31 +1,3 @@
-/* Animations */
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-@keyframes glitch {
-    0% { background-position: 0 0; }
-    20% { background-position: -5px 5px; }
-    40% { background-position: 5px -5px; }
-    60% { background-position: -5px 5px; }
-    80% { background-position: 5px -5px; }
-    100% { background-position: 0 0; }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
 /* Glitch Effect */
 .glitch {
     position: relative;
@@ -38,46 +10,159 @@
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
+    background: var(--dark);
 }
 
 .glitch::before {
-    color: var(--glitch-color1);
-    animation: glitch-effect 3s infinite;
-    z-index: -1;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    left: 2px;
+    text-shadow: -2px 0 var(--primary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
 }
 
 .glitch::after {
-    color: var(--glitch-color2);
-    animation: glitch-effect 2s infinite reverse;
-    z-index: -2;
-    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    left: -2px;
+    text-shadow: -2px 0 var(--secondary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
 }
 
-@keyframes glitch-effect {
-    0% { transform: translate(0); }
-    20% { transform: translate(-3px, 3px); }
-    40% { transform: translate(-3px, -3px); }
-    60% { transform: translate(3px, 3px); }
-    80% { transform: translate(3px, -3px); }
-    100% { transform: translate(0); }
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+        transform: translate(0);
+    }
+    10% {
+        clip: rect(112px, 9999px, 76px, 0);
+        transform: translate(0);
+    }
+    20% {
+        clip: rect(85px, 9999px, 77px, 0);
+        transform: translate(0);
+    }
+    30% {
+        clip: rect(27px, 9999px, 97px, 0);
+        transform: translate(0);
+    }
+    40% {
+        clip: rect(64px, 9999px, 98px, 0);
+        transform: translate(0);
+    }
+    50% {
+        clip: rect(61px, 9999px, 85px, 0);
+        transform: translate(0);
+    }
+    60% {
+        clip: rect(99px, 9999px, 114px, 0);
+        transform: translate(0);
+    }
+    70% {
+        clip: rect(34px, 9999px, 115px, 0);
+        transform: translate(0);
+    }
+    80% {
+        clip: rect(98px, 9999px, 129px, 0);
+        transform: translate(0);
+    }
+    90% {
+        clip: rect(43px, 9999px, 96px, 0);
+        transform: translate(0);
+    }
+    100% {
+        clip: rect(82px, 9999px, 64px, 0);
+        transform: translate(0);
+    }
 }
 
-/* Hover Animations */
-.neon-button, .social-icon, .flavor-card {
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 119px, 0);
+        transform: translate(0);
+    }
+    10% {
+        clip: rect(120px, 9999px, 66px, 0);
+        transform: translate(0);
+    }
+    20% {
+        clip: rect(25px, 9999px, 145px, 0);
+        transform: translate(0);
+    }
+    30% {
+        clip: rect(87px, 9999px, 106px, 0);
+        transform: translate(0);
+    }
+    40% {
+        clip: rect(120px, 9999px, 156px, 0);
+        transform: translate(0);
+    }
+    50% {
+        clip: rect(71px, 9999px, 99px, 0);
+        transform: translate(0);
+    }
+    60% {
+        clip: rect(20px, 9999px, 78px, 0);
+        transform: translate(0);
+    }
+    70% {
+        clip: rect(133px, 9999px, 55px, 0);
+        transform: translate(0);
+    }
+    80% {
+        clip: rect(53px, 9999px, 143px, 0);
+        transform: translate(0);
+    }
+    90% {
+        clip: rect(10px, 9999px, 13px, 0);
+        transform: translate(0);
+    }
+    100% {
+        clip: rect(138px, 9999px, 133px, 0);
+        transform: translate(0);
+    }
+}
+
+/* Pulse Animation */
+.pulse {
     animation: pulse 2s infinite;
 }
 
-.neon-button:hover, .social-icon:hover, .flavor-card:hover {
-    animation: none;
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 60, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 0, 60, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 60, 0);
+    }
 }
 
-/* Floating Animation */
-.flavor-card:nth-child(odd) {
-    animation: float 4s ease-in-out infinite;
+/* Hover Effects */
+.product-card {
+    transform: perspective(1000px) rotateX(0) rotateY(0) scale(1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.flavor-card:nth-child(even) {
-    animation: float 4s ease-in-out infinite 1s;
+.product-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
+    z-index: 10;
+}
+
+/* Logo Animation */
+#crunch-logo:hover .logo-text {
+    animation: colorShift 2s infinite alternate;
+}
+
+@keyframes colorShift {
+    0% {
+        text-shadow: 0 0 10px var(--primary);
+    }
+    50% {
+        text-shadow: 0 0 10px var(--secondary);
+    }
+    100% {
+        text-shadow: 0 0 10px var(--accent);
+    }
 }
